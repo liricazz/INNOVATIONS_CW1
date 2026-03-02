@@ -1,0 +1,83 @@
+<!doctype html>
+<html lang="ru">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Заводы РФ - Интерактивная карта</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=PT+Sans:wght@400;700&family=Russo+One&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css">
+  <link rel="stylesheet" href="https://unpkg.com/leaflet.markercluster@1.5.3/dist/MarkerCluster.css">
+  <link rel="stylesheet" href="https://unpkg.com/leaflet.markercluster@1.5.3/dist/MarkerCluster.Default.css">
+  <link rel="stylesheet" href="./styles.css">
+</head>
+<body>
+  <div class="ambient-shape shape-a" aria-hidden="true"></div>
+  <div class="ambient-shape shape-b" aria-hidden="true"></div>
+
+  <div class="app-shell">
+    <header class="hero">
+      <div>
+        <p class="eyebrow">Marta / Промышленная карта РФ</p>
+        <h1>Интерактивная карта заводов Российской Федерации</h1>
+        <p class="subline">Нажимайте на точки, чтобы читать краткие характеристики объектов.</p>
+      </div>
+      <div class="hero-stats">
+        <article class="stat-card">
+          <p class="stat-label">Всего в базе</p>
+          <p class="stat-value" id="totalCount">0</p>
+        </article>
+        <article class="stat-card">
+          <p class="stat-label">С названиями</p>
+          <p class="stat-value" id="namedCount">0</p>
+        </article>
+        <article class="stat-card">
+          <p class="stat-label">С сайтами</p>
+          <p class="stat-value" id="websiteCount">0</p>
+        </article>
+      </div>
+    </header>
+
+    <main class="workspace">
+      <aside class="panel">
+        <label class="field">
+          <span>Поиск завода</span>
+          <input id="searchInput" type="search" placeholder="Название, город, описание...">
+        </label>
+
+        <label class="field">
+          <span>Тип объекта</span>
+          <select id="industryFilter">
+            <option value="">Все типы</option>
+          </select>
+        </label>
+
+        <button id="resetBtn" type="button">Сбросить фильтры</button>
+
+        <p class="meta" id="dataMeta">
+          Источник: OpenStreetMap (данные из файла factories.json)
+        </p>
+
+        <div class="results-header">
+          <h2>Объекты</h2>
+          <span id="visibleCount">0</span>
+        </div>
+        <ul id="resultsList" class="results-list"></ul>
+      </aside>
+
+      <section class="map-panel">
+        <div id="map"></div>
+        <div id="loadingOverlay" class="loading-overlay">
+          <div class="spinner" aria-hidden="true"></div>
+          <p id="loadingText">Загрузка базы заводов...</p>
+        </div>
+      </section>
+    </main>
+  </div>
+
+  <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
+  <script src="https://unpkg.com/leaflet.markercluster@1.5.3/dist/leaflet.markercluster.js"></script>
+  <script src="./app.js"></script>
+</body>
+</html>
